@@ -16,6 +16,7 @@
 		7125447B22C06D4300A6ECDE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447A22C06D4300A6ECDE /* UIColor+Extension.swift */; };
 		7125447D22C06D9500A6ECDE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447C22C06D9500A6ECDE /* UIView+Extension.swift */; };
 		7125447F22C06E9C00A6ECDE /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447E22C06E9C00A6ECDE /* UITableView+Extension.swift */; };
+		7125448222C0BF7600A6ECDE /* ScreenUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125448122C0BF7600A6ECDE /* ScreenUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7125447A22C06D4300A6ECDE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7125447C22C06D9500A6ECDE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7125447E22C06E9C00A6ECDE /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		7125448122C0BF7600A6ECDE /* ScreenUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				7125447222C05D1500A6ECDE /* MainViewController.swift */,
 				7125447422C06A5C00A6ECDE /* Demos */,
 				7125447922C06D2A00A6ECDE /* Extensions */,
+				7125448022C0BF6200A6ECDE /* Utilities */,
 				7125447122C05CCC00A6ECDE /* Supporting Files */,
 			);
 			path = Transitions;
@@ -98,6 +101,14 @@
 				7125447E22C06E9C00A6ECDE /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7125448022C0BF6200A6ECDE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7125448122C0BF7600A6ECDE /* ScreenUtility.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +183,7 @@
 			files = (
 				7125447D22C06D9500A6ECDE /* UIView+Extension.swift in Sources */,
 				7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */,
+				7125448222C0BF7600A6ECDE /* ScreenUtility.swift in Sources */,
 				7125447F22C06E9C00A6ECDE /* UITableView+Extension.swift in Sources */,
 				7125447622C06A8600A6ECDE /* DatePickerDemo.swift in Sources */,
 				7125447822C06AAF00A6ECDE /* PhotoDetailDemo.swift in Sources */,
