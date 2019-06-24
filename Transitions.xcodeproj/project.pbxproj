@@ -11,6 +11,11 @@
 		7125446722C05ADD00A6ECDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7125446622C05ADD00A6ECDE /* Assets.xcassets */; };
 		7125446A22C05ADD00A6ECDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7125446822C05ADD00A6ECDE /* LaunchScreen.storyboard */; };
 		7125447322C05D1500A6ECDE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447222C05D1500A6ECDE /* MainViewController.swift */; };
+		7125447622C06A8600A6ECDE /* DatePickerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447522C06A8600A6ECDE /* DatePickerDemo.swift */; };
+		7125447822C06AAF00A6ECDE /* PhotoDetailDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447722C06AAF00A6ECDE /* PhotoDetailDemo.swift */; };
+		7125447B22C06D4300A6ECDE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447A22C06D4300A6ECDE /* UIColor+Extension.swift */; };
+		7125447D22C06D9500A6ECDE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447C22C06D9500A6ECDE /* UIView+Extension.swift */; };
+		7125447F22C06E9C00A6ECDE /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447E22C06E9C00A6ECDE /* UITableView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		7125446922C05ADD00A6ECDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7125446B22C05ADD00A6ECDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7125447222C05D1500A6ECDE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7125447522C06A8600A6ECDE /* DatePickerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDemo.swift; sourceTree = "<group>"; };
+		7125447722C06AAF00A6ECDE /* PhotoDetailDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailDemo.swift; sourceTree = "<group>"; };
+		7125447A22C06D4300A6ECDE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7125447C22C06D9500A6ECDE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		7125447E22C06E9C00A6ECDE /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +64,8 @@
 			children = (
 				7125445F22C05ADC00A6ECDE /* AppDelegate.swift */,
 				7125447222C05D1500A6ECDE /* MainViewController.swift */,
+				7125447422C06A5C00A6ECDE /* Demos */,
+				7125447922C06D2A00A6ECDE /* Extensions */,
 				7125447122C05CCC00A6ECDE /* Supporting Files */,
 			);
 			path = Transitions;
@@ -67,6 +79,25 @@
 				7125446B22C05ADD00A6ECDE /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7125447422C06A5C00A6ECDE /* Demos */ = {
+			isa = PBXGroup;
+			children = (
+				7125447522C06A8600A6ECDE /* DatePickerDemo.swift */,
+				7125447722C06AAF00A6ECDE /* PhotoDetailDemo.swift */,
+			);
+			path = Demos;
+			sourceTree = "<group>";
+		};
+		7125447922C06D2A00A6ECDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7125447C22C06D9500A6ECDE /* UIView+Extension.swift */,
+				7125447A22C06D4300A6ECDE /* UIColor+Extension.swift */,
+				7125447E22C06E9C00A6ECDE /* UITableView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7125447D22C06D9500A6ECDE /* UIView+Extension.swift in Sources */,
 				7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */,
+				7125447F22C06E9C00A6ECDE /* UITableView+Extension.swift in Sources */,
+				7125447622C06A8600A6ECDE /* DatePickerDemo.swift in Sources */,
+				7125447822C06AAF00A6ECDE /* PhotoDetailDemo.swift in Sources */,
 				7125447322C05D1500A6ECDE /* MainViewController.swift in Sources */,
+				7125447B22C06D4300A6ECDE /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
