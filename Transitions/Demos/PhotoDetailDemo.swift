@@ -13,7 +13,7 @@ class PhotoDetailDemo: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .fromHEX("#CDEFAB")
+        view.backgroundColor = UIColor(hex: 0xCDEFAB)
     }
     
 }

@@ -10,26 +10,35 @@ import UIKit
 
 extension UIColor {
     
-    class func fromHEX(_ hex: String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
+    convenience init(hex: Int) {
+        self.init(hex: hex, a: 1.0)
+    }
+    
+    convenience init(hex: Int, a: CGFloat) {
+        self.init(r: (hex >> 16) & 0xff, g: (hex >> 8) & 0xff, b: hex & 0xff, a: a)
+    }
+    
+    convenience init(r: Int, g: Int, b: Int) {
+        self.init(r: r, g: g, b: b, a: 1.0)
+    }
+    
+    convenience init(r: Int, g: Int, b: Int, a: CGFloat) {
+        self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: a)
+    }
+    
+    convenience init?(hexString: String) {
+        guard let hex = hexString.hex else {
+            return nil
         }
-        
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-        
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
+        self.init(hex: hex)
+    }
+    
+}
+
+extension String {
+    
+    var hex: Int? {
+        return Int(self, radix: 16)
     }
     
 }

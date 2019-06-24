@@ -13,7 +13,7 @@ class DatePickerDemo: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .fromHEX("ABCDEF")
+        view.backgroundColor = UIColor(hexString: "ABCDEF")
     }
     
 }
