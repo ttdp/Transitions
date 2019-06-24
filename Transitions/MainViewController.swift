@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Transitions
 //
 //  Created by Tian Tong on 2019/6/24.
@@ -8,13 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupViews()
     }
 
-
+    
+    func setupViews() {
+        view.backgroundColor = .cyan
+    }
+    
 }
-
