@@ -28,13 +28,13 @@ class DatePickerDemo: UIViewController {
     
 }
 
-fileprivate enum ModelTransitionType {
+fileprivate enum TransitionType {
     case presentation, dismissal
 }
 
 class DatePickerViewController: UIViewController {
     
-    fileprivate var transitionType: ModelTransitionType? = .presentation
+    fileprivate var transitionType: TransitionType? = .presentation
     fileprivate static let overlayerBackgroundColor = UIColor.black.withAlphaComponent(0.4)
     
     init() {
