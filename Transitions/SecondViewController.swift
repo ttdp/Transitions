@@ -20,7 +20,7 @@ class SecondViewController: UIViewController {
     
     lazy var demoCollection: DemoCollectionView = {
         let collectionView = DemoCollectionView()
-        collectionView.registerCell(UICollectionViewCell.self)
+        collectionView.registerCell(DemoCollectionCell.self)
         collectionView.controller = self
         return collectionView
     }()
@@ -59,6 +59,35 @@ class DemoCollectionView: UICollectionView {
 
 }
 
+class DemoCollectionCell: UICollectionViewCell {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Views
+    
+    lazy var photoView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private func setupViews() {
+        addSubview(photoView)
+        addConstraints(format: "H:|[v0]|", views: photoView)
+        addConstraints(format: "V:|[v0]|", views: photoView)
+    }
+    
+}
+
 extension DemoCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -68,8 +97,28 @@ extension DemoCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DemoCollectionCell
         cell.backgroundColor = .green
+        
+        let row = indexPath.row
+        let photoNumber: String
+        switch row {
+        case 0...8:
+            photoNumber = "0\(row + 1)"
+        case 9...59:
+            photoNumber = "\(row + 1)"
+        default:
+            fatalError("No photo at \(row)")
+        }
+        let photoName = "LA\(photoNumber)"
+        
+        // Small size above No.30, big size below No.30
+        if row >= 30 {
+            cell.photoView.image = UIImage(named: photoName)
+        } else {
+            cell.photoView.image = nil
+        }
+        
         return cell
     }
     
