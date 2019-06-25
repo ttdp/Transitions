@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    func setupViews() {
+    private func setupViews() {
         view.backgroundColor = .cyan
         
         view.addSubview(demoTable)
