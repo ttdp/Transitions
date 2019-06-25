@@ -80,7 +80,7 @@
 				71FCB67822C1AD35001D3FFC /* TabBarController.swift */,
 				7125447222C05D1500A6ECDE /* MainViewController.swift */,
 				71F970BE22C2030100BCF92A /* PhotoGridViewController.swift */,
-				71F970B522C1E95B00BCF92A /* ScaleUpTransition */,
+				71F970B522C1E95B00BCF92A /* PushPopTransition */,
 				7125447422C06A5C00A6ECDE /* Demos */,
 				7125447922C06D2A00A6ECDE /* Extensions */,
 				7125448022C0BF6200A6ECDE /* Utilities */,
@@ -127,14 +127,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		71F970B522C1E95B00BCF92A /* ScaleUpTransition */ = {
+		71F970B522C1E95B00BCF92A /* PushPopTransition */ = {
 			isa = PBXGroup;
 			children = (
 				71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */,
 				71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */,
 				71F970BA22C1EC9600BCF92A /* PhotoDetailPushTransition.swift */,
 			);
-			path = ScaleUpTransition;
+			path = PushPopTransition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
