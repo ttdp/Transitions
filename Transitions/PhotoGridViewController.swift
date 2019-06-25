@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  PhotoGirdViewController.swift
 //  Transitions
 //
 //  Created by Tian Tong on 2019/6/25.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class PhotoGridViewController: UIViewController {
+    
+    fileprivate var lastSelectedIndexPath: IndexPath? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,24 +20,60 @@ class SecondViewController: UIViewController {
     
     // MARK: Views
     
-    lazy var demoCollection: DemoCollectionView = {
-        let collectionView = DemoCollectionView()
-        collectionView.registerCell(DemoCollectionCell.self)
+    lazy var photoGrid: PhotoGridView = {
+        let collectionView = PhotoGridView()
+        collectionView.registerCell(PhotoGridCell.self)
         collectionView.controller = self
         return collectionView
     }()
     
     private func setupViews() {
-        view.addSubview(demoCollection)
-        view.addConstraints(format: "H:|[v0]|", views: demoCollection)
-        view.addConstraints(format: "V:|[v0]|", views: demoCollection)
+        view.addSubview(photoGrid)
+        view.addConstraints(format: "H:|[v0]|", views: photoGrid)
+        view.addConstraints(format: "V:|[v0]|", views: photoGrid)
     }
     
 }
 
-class DemoCollectionView: UICollectionView {
+extension PhotoGridViewController: PhotoDetailTransitionAnimatorDelegate {
     
-    var controller: SecondViewController!
+    func transitionWillStart() {
+        guard let lastSelected = lastSelectedIndexPath else { return }
+        photoGrid.cellForItem(at: lastSelected)?.isHidden = true
+    }
+    
+    func transitionDidEnd() {
+        guard let lastSelected = lastSelectedIndexPath else { return }
+        photoGrid.cellForItem(at: lastSelected)?.isHidden = false
+    }
+    
+    func referenceImage() -> UIImage? {
+        guard
+            let lastSelected = lastSelectedIndexPath,
+            let cell = photoGrid.cellForItem(at: lastSelected) as? PhotoGridCell
+        else {
+            return nil
+        }
+        
+        return cell.photoView.image
+    }
+    
+    func imageFrame() -> CGRect? {
+        guard
+            let lastSelected = lastSelectedIndexPath,
+            let cell = photoGrid.cellForItem(at: lastSelected) as? PhotoGridCell
+            else {
+                return nil
+        }
+        
+        return photoGrid.convert(cell.frame, to: view)
+    }
+    
+}
+
+class PhotoGridView: UICollectionView {
+    
+    var controller: PhotoGridViewController!
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -59,7 +97,7 @@ class DemoCollectionView: UICollectionView {
 
 }
 
-class DemoCollectionCell: UICollectionViewCell {
+class PhotoGridCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -88,7 +126,7 @@ class DemoCollectionCell: UICollectionViewCell {
     
 }
 
-extension DemoCollectionView: UICollectionViewDataSource {
+extension PhotoGridView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let width = (collectionView.frame.width - 6) / 4
@@ -97,7 +135,7 @@ extension DemoCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DemoCollectionCell
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PhotoGridCell
         cell.backgroundColor = .green
         
         let row = indexPath.row
@@ -124,7 +162,22 @@ extension DemoCollectionView: UICollectionViewDataSource {
     
 }
 
-extension DemoCollectionView: UICollectionViewDelegateFlowLayout {
+extension PhotoGridView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        controller.lastSelectedIndexPath = indexPath
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
+        let image = cell.photoView.image
+        
+        let photoDetailVC = PhotoDetailViewController()
+        photoDetailVC.photoView.image = image
+        
+        controller.navigationController?.pushViewController(photoDetailVC, animated: true)
+    }
+    
+}
+
+extension PhotoGridView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 6) / 4
