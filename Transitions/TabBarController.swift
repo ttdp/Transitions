@@ -36,9 +36,12 @@ class TabBarController: UITabBarController {
         dateNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         
         let photoNavigation = PhotoGridNavigationController(rootViewController: PhotoGridViewController())
-        photoNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        photoNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
         
-        viewControllers = [dateNavigation, photoNavigation]
+        let galleryNavigation = GalleryNavigationController(rootViewController: GalleryViewController())
+        galleryNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
+        
+        viewControllers = [dateNavigation, photoNavigation, galleryNavigation]
     }
     
 }

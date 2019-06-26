@@ -12,6 +12,9 @@
 		7122EC9C22C3064000EC18D3 /* PhotoDetailPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */; };
 		7122EC9E22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */; };
 		7122ECA022C3339900EC18D3 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9F22C3339900EC18D3 /* CGFloat+Extension.swift */; };
+		7122ECA222C3563000EC18D3 /* PhotoDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA122C3563000EC18D3 /* PhotoDetailCollectionView.swift */; };
+		7122ECA522C35A9E00EC18D3 /* GalleryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */; };
+		7122ECA722C35AF400EC18D3 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */; };
 		7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125445F22C05ADC00A6ECDE /* AppDelegate.swift */; };
 		7125446722C05ADD00A6ECDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7125446622C05ADD00A6ECDE /* Assets.xcassets */; };
 		7125446A22C05ADD00A6ECDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7125446822C05ADD00A6ECDE /* LaunchScreen.storyboard */; };
@@ -35,6 +38,9 @@
 		7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailPopTransition.swift; sourceTree = "<group>"; };
 		7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailInteractiveDismissTransition.swift; sourceTree = "<group>"; };
 		7122EC9F22C3339900EC18D3 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		7122ECA122C3563000EC18D3 /* PhotoDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailCollectionView.swift; sourceTree = "<group>"; };
+		7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryNavigationController.swift; sourceTree = "<group>"; };
+		7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		7125445C22C05ADC00A6ECDE /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7125445F22C05ADC00A6ECDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7125446622C05ADD00A6ECDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7122ECA322C359F500EC18D3 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */,
+				7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		7125445322C05ADC00A6ECDE = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +103,7 @@
 				71FCB67822C1AD35001D3FFC /* TabBarController.swift */,
 				7125447422C06A5C00A6ECDE /* PresentTransition */,
 				71F970B522C1E95B00BCF92A /* PushPopTransition */,
+				7122ECA322C359F500EC18D3 /* Gallery */,
 				7125447922C06D2A00A6ECDE /* Extensions */,
 				7125448022C0BF6200A6ECDE /* Utilities */,
 				7125447122C05CCC00A6ECDE /* Supporting Files */,
@@ -142,6 +158,7 @@
 				71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */,
 				71F970BE22C2030100BCF92A /* PhotoGridViewController.swift */,
 				71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */,
+				7122ECA122C3563000EC18D3 /* PhotoDetailCollectionView.swift */,
 				71F970BA22C1EC9600BCF92A /* PhotoDetailPushTransition.swift */,
 				7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */,
 				7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */,
@@ -228,11 +245,14 @@
 				71FCB67922C1AD35001D3FFC /* TabBarController.swift in Sources */,
 				7125447F22C06E9C00A6ECDE /* Reusable+Extension.swift in Sources */,
 				7125447622C06A8600A6ECDE /* DatePickerViewController.swift in Sources */,
+				7122ECA222C3563000EC18D3 /* PhotoDetailCollectionView.swift in Sources */,
 				7122EC9822C2EC2100EC18D3 /* DateTableNavigationController.swift in Sources */,
 				71F970B922C1EBFF00BCF92A /* PhotoDetailViewController.swift in Sources */,
 				7122EC9A22C2FC0B00EC18D3 /* DateUtility.swift in Sources */,
 				71F970BD22C1F97100BCF92A /* CGRect+Extension.swift in Sources */,
 				71F970B722C1EAE900BCF92A /* PhotoGridNavigationController.swift in Sources */,
+				7122ECA722C35AF400EC18D3 /* GalleryViewController.swift in Sources */,
+				7122ECA522C35A9E00EC18D3 /* GalleryNavigationController.swift in Sources */,
 				7122ECA022C3339900EC18D3 /* CGFloat+Extension.swift in Sources */,
 				7125447322C05D1500A6ECDE /* DateTableViewController.swift in Sources */,
 				7122EC9E22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift in Sources */,

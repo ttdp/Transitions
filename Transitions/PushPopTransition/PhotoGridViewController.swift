@@ -35,42 +35,6 @@ class PhotoGridViewController: UIViewController {
     
 }
 
-extension PhotoGridViewController: PhotoDetailTransitionAnimatorDelegate {
-    
-    func transitionWillStart() {
-        guard let lastSelected = lastSelectedIndexPath else { return }
-        photoGrid.cellForItem(at: lastSelected)?.isHidden = true
-    }
-    
-    func transitionDidEnd() {
-        guard let lastSelected = lastSelectedIndexPath else { return }
-        photoGrid.cellForItem(at: lastSelected)?.isHidden = false
-    }
-    
-    func referenceImage() -> UIImage? {
-        guard
-            let lastSelected = lastSelectedIndexPath,
-            let cell = photoGrid.cellForItem(at: lastSelected) as? PhotoGridCell
-        else {
-            return nil
-        }
-        
-        return cell.photoView.image
-    }
-    
-    func imageFrame() -> CGRect? {
-        guard
-            let lastSelected = lastSelectedIndexPath,
-            let cell = photoGrid.cellForItem(at: lastSelected) as? PhotoGridCell
-            else {
-                return nil
-        }
-        
-        return photoGrid.convert(cell.frame, to: view)
-    }
-    
-}
-
 class PhotoGridView: UICollectionView {
     
     var controller: PhotoGridViewController!
@@ -134,7 +98,7 @@ extension PhotoGridView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PhotoGridCell
-        cell.backgroundColor = .green
+        cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
         
         let row = indexPath.row
         let photoNumber: String
@@ -163,6 +127,8 @@ extension PhotoGridView: UICollectionViewDataSource {
 extension PhotoGridView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.row >= 30 else { return }
+        
         controller.lastSelectedIndexPath = indexPath
         let cell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
         let image = cell.photoView.image
@@ -180,6 +146,42 @@ extension PhotoGridView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 6) / 4
         return CGSize(width: width, height: width)
+    }
+    
+}
+
+extension PhotoGridViewController: PhotoDetailTransitionAnimatorDelegate {
+    
+    func transitionWillStart() {
+        guard let lastSelected = lastSelectedIndexPath else { return }
+        photoGrid.cellForItem(at: lastSelected)?.isHidden = true
+    }
+    
+    func transitionDidEnd() {
+        guard let lastSelected = lastSelectedIndexPath else { return }
+        photoGrid.cellForItem(at: lastSelected)?.isHidden = false
+    }
+    
+    func referenceImage() -> UIImage? {
+        guard
+            let lastSelected = lastSelectedIndexPath,
+            let cell = photoGrid.cellForItem(at: lastSelected) as? PhotoGridCell
+            else {
+                return nil
+        }
+        
+        return cell.photoView.image
+    }
+    
+    func imageFrame() -> CGRect? {
+        guard
+            let lastSelected = lastSelectedIndexPath,
+            let cell = photoGrid.cellForItem(at: lastSelected) as? PhotoGridCell
+            else {
+                return nil
+        }
+        
+        return photoGrid.convert(cell.frame, to: view)
     }
     
 }

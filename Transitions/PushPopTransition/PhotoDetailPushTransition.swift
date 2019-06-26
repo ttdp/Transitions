@@ -97,10 +97,9 @@ class PhotoDetailPushTransition: NSObject, UIViewControllerAnimatedTransitioning
             self.fromDelegate.transitionDidEnd()
         }
         
-        guard let tabBar = transitionContext.viewController(forKey: .from)?.tabBarController as? TabBarController else {
-            return
+        if let tabBar = transitionContext.viewController(forKey: .from)?.tabBarController as? TabBarController {
+            tabBar.setTabBar(hidden: true, animated: true, alongside: animator)
         }
-        tabBar.setTabBar(hidden: true, animated: true, alongside: animator)
         
         // Here, we kick off the animation.
         animator.startAnimation()

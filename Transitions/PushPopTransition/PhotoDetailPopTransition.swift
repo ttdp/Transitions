@@ -65,10 +65,9 @@ class PhotoDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning 
             self.photoDetailVC.transitionDidEnd()
         }
         
-        guard let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController else {
-            return
+        if let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController {
+            tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
         }
-        tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
         
         // Here, we kick off the animation.
         animator.startAnimation()
