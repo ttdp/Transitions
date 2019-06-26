@@ -1,5 +1,5 @@
 //
-//  DatePickerDemo.swift
+//  DatePickerViewController.swift
 //  Transitions
 //
 //  Created by Tian Tong on 2019/6/24.
@@ -8,34 +8,23 @@
 
 import UIKit
 
-let redColor = UIColor(hexString: "F54C53")
-
-class DatePickerDemo: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor(hexString: "ABCDEF")
-        
-        let dateButton = UIBarButtonItem(title: "Date", style: .done, target: self, action: #selector(showDate))
-        navigationItem.rightBarButtonItem = dateButton
-    }
-    
-    @objc func showDate() {
-        let datePicker = DatePickerViewController()
-        present(datePicker, animated: true)
-    }
-    
-}
+fileprivate let redColor = UIColor(hexString: "F54C53")
 
 fileprivate enum TransitionType {
     case presentation, dismissal
 }
 
+protocol DatePickerViewControllerDelegate {
+    func datePicker(didSelect date: Date)
+}
+
 class DatePickerViewController: UIViewController {
     
     fileprivate var transitionType: TransitionType? = .presentation
+    
     fileprivate static let overlayerBackgroundColor = UIColor.black.withAlphaComponent(0.4)
+    
+    var delegate: DatePickerViewControllerDelegate?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -186,6 +175,9 @@ class DatePickerViewController: UIViewController {
     @objc func selectDate() {
         selectButton.backgroundColor = redColor
         presentingViewController?.dismiss(animated: true)
+
+        let date = pickerView.date
+        delegate?.datePicker(didSelect: date)
     }
     
     @objc func selectDown() {
@@ -251,6 +243,16 @@ extension DatePickerViewController: UIViewControllerAnimatedTransitioning {
             animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.82)
         case .dismissal:
             animator = UIViewPropertyAnimator(duration: duration, curve: .easeIn)
+        }
+        
+        let tabBar: TabBarController?
+        switch type {
+        case .presentation:
+            tabBar = transitionContext.viewController(forKey: .from) as? TabBarController
+            tabBar?.setTabBar(hidden: true, animated: true, alongside: animator)
+        case .dismissal:
+            tabBar = transitionContext.viewController(forKey: .to) as? TabBarController
+            tabBar?.setTabBar(hidden: false, animated: true, alongside: animator)
         }
         
         switch type {

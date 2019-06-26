@@ -16,9 +16,9 @@ class TabBarController: UITabBarController {
     
     fileprivate var isTabBarHidden: Bool = false
     
-    fileprivate var isTabBarOffScreen: Bool {
-        return !tabBar.frame.intersects(view.frame)
-    }
+//    fileprivate var isTabBarOffScreen: Bool {
+//        return !tabBar.frame.intersects(view.frame)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class TabBarController: UITabBarController {
     func setupViews() {
         view.backgroundColor = .white
         
-        let mainNavigation = UINavigationController(rootViewController: MainViewController())
+        let mainNavigation = DateTableNavigationController(rootViewController: DateTableViewController())
         mainNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         
         let secondNavigation = PhotoGridNavigationController(rootViewController: PhotoGridViewController())
@@ -38,7 +38,11 @@ class TabBarController: UITabBarController {
         viewControllers = [mainNavigation, secondNavigation]
     }
     
-    // MARK: Animator
+}
+
+// MARK: - Animator
+
+extension TabBarController {
     
     func setTabBar(hidden: Bool, animated: Bool = true, alongside animator: UIViewPropertyAnimator? = nil) {
         guard isTabBarHidden != hidden else { return }
