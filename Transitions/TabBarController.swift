@@ -16,9 +16,9 @@ class TabBarController: UITabBarController {
     
     fileprivate var isTabBarHidden: Bool = false
     
-//    fileprivate var isTabBarOffScreen: Bool {
-//        return !tabBar.frame.intersects(view.frame)
-//    }
+    fileprivate var isTabBarOffScreen: Bool {
+        return !tabBar.frame.intersects(view.frame)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,9 @@ extension TabBarController {
     
     func setTabBar(hidden: Bool, animated: Bool = true, alongside animator: UIViewPropertyAnimator? = nil) {
         guard isTabBarHidden != hidden else { return }
+        
+        guard isTabBarOffScreen != hidden else { print("Here"); return }
+        
         isTabBarHidden = hidden
         
         let offsetY = hidden ? tabBar.frame.height : -tabBar.frame.height

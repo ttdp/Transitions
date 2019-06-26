@@ -16,6 +16,7 @@ class PhotoDetailViewController: UIViewController {
         view.backgroundColor = .white
         
         setupViews()
+        configureDismissGesture()
     }
     
     // MARK: Views
@@ -32,6 +33,41 @@ class PhotoDetailViewController: UIViewController {
         view.addSubview(photoView)
         view.addConstraints(format: "H:|[v0]|", views: photoView)
         view.addConstraints(format: "V:|[v0]|", views: photoView)
+    }
+    
+    // MARK: - Drag To Dismiss
+    
+    private let dismissPanGesture = UIPanGestureRecognizer()
+    
+    var isInteractiveDismissing: Bool = false
+    
+    // By holding this as a property, we can then notify it about the current
+    // state of the pan-gesture as the user moves their finger around.
+    weak var transitionController: PhotoDetailInteractiveDismissTransition? = nil
+    
+    // We'll call this in viewDidLoad to set up the gesture
+    private func configureDismissGesture() {
+        view.addGestureRecognizer(dismissPanGesture)
+        dismissPanGesture.addTarget(self, action: #selector(dismissPanGestureDidChange))
+    }
+    
+    @objc private func dismissPanGestureDidChange(_ gesture: UIPanGestureRecognizer) {
+        // Decide whether we're interactively-dismissing, and notify our navigation controller.
+        switch gesture.state {
+        case .began:
+            isInteractiveDismissing = true
+            navigationController?.popViewController(animated: true)
+        case .cancelled, .failed, .ended:
+            isInteractiveDismissing = false
+        case .changed, .possible:
+            break
+        @unknown default:
+            break
+        }
+        
+        // Here's where we pass up the current-state of our gesture
+        // to our 'PhotoDetailInteractiveDismissTransition':
+        self.transitionController?.didPanWith(gestureRecognizer: gesture)
     }
     
 }

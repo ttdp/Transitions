@@ -31,7 +31,12 @@ extension PhotoGridNavigationController: UINavigationControllerDelegate {
             // Return a custom push animation.
             result = PhotoDetailPushTransition(fromDelegate: fromVC, toPhotoDetailVC: photoDetailVC)
         } else if let photoDetailVC = fromVC as? PhotoDetailViewController, operation == .pop {
-            result = PhotoDetailPopTransition(toDelegate: toVC, fromPhotoDetailVC: photoDetailVC)
+            // Check if it is a pan gesture dismiss
+            if photoDetailVC.isInteractiveDismissing {
+                result = PhotoDetailInteractiveDismissTransition(fromDelegate: photoDetailVC, toDelegate: toVC)
+            } else {
+                result = PhotoDetailPopTransition(toDelegate: toVC, fromPhotoDetailVC: photoDetailVC)
+            }
         } else {
             result = nil
         }
@@ -39,5 +44,13 @@ extension PhotoGridNavigationController: UINavigationControllerDelegate {
         currentAnimationTransition = result
         return result
     }
+    
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return currentAnimationTransition as? UIViewControllerInteractiveTransitioning
+    }
+    
+//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+//        currentAnimationTransition = nil
+//    }
     
 }
