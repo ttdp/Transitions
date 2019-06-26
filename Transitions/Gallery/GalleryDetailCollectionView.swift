@@ -1,5 +1,5 @@
 //
-//  PhotoDetailCollectionView.swift
+//  GalleryDetailCollectionView.swift
 //  Transitions
 //
 //  Created by Tian Tong on 2019/6/26.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PhotoDetailCollectionView: UICollectionView {
+class GalleryDetailCollectionView: UICollectionView {
     
-    var controller: PhotoDetailViewController!
+    var controller: GalleryDetailViewController!
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -22,10 +22,14 @@ class PhotoDetailCollectionView: UICollectionView {
     
     convenience init() {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 2
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        
         
         self.init(frame: .zero, collectionViewLayout: layout)
+        self.isPagingEnabled = true
+        self.showsHorizontalScrollIndicator = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +38,7 @@ class PhotoDetailCollectionView: UICollectionView {
     
 }
 
-class PhotoDetailCollectionCell: UICollectionViewCell {
+class GalleryDetailCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +54,7 @@ class PhotoDetailCollectionCell: UICollectionViewCell {
     
     lazy var photoView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -63,18 +67,24 @@ class PhotoDetailCollectionCell: UICollectionViewCell {
     
 }
 
-extension PhotoDetailCollectionView: UICollectionViewDataSource {
+extension GalleryDetailCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return controller.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as GalleryDetailCollectionCell
+        cell.photoView.image = controller.images[indexPath.row]
+        return cell
     }
     
 }
 
-extension PhotoDetailCollectionView: UICollectionViewDelegate {
+extension GalleryDetailCollectionView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 500)
+    }
     
 }

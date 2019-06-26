@@ -12,7 +12,7 @@
 		7122EC9C22C3064000EC18D3 /* PhotoDetailPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */; };
 		7122EC9E22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */; };
 		7122ECA022C3339900EC18D3 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9F22C3339900EC18D3 /* CGFloat+Extension.swift */; };
-		7122ECA222C3563000EC18D3 /* PhotoDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA122C3563000EC18D3 /* PhotoDetailCollectionView.swift */; };
+		7122ECA222C3563000EC18D3 /* GalleryDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */; };
 		7122ECA522C35A9E00EC18D3 /* GalleryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */; };
 		7122ECA722C35AF400EC18D3 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */; };
 		7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125445F22C05ADC00A6ECDE /* AppDelegate.swift */; };
@@ -24,6 +24,7 @@
 		7125447D22C06D9500A6ECDE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447C22C06D9500A6ECDE /* UIView+Extension.swift */; };
 		7125447F22C06E9C00A6ECDE /* Reusable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125447E22C06E9C00A6ECDE /* Reusable+Extension.swift */; };
 		7125448222C0BF7600A6ECDE /* ScreenUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125448122C0BF7600A6ECDE /* ScreenUtility.swift */; };
+		7185B04C22C3607800A36E20 /* GalleryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7185B04B22C3607800A36E20 /* GalleryDetailViewController.swift */; };
 		71F970B722C1EAE900BCF92A /* PhotoGridNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */; };
 		71F970B922C1EBFF00BCF92A /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */; };
 		71F970BB22C1EC9600BCF92A /* PhotoDetailPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F970BA22C1EC9600BCF92A /* PhotoDetailPushTransition.swift */; };
@@ -38,7 +39,7 @@
 		7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailPopTransition.swift; sourceTree = "<group>"; };
 		7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailInteractiveDismissTransition.swift; sourceTree = "<group>"; };
 		7122EC9F22C3339900EC18D3 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
-		7122ECA122C3563000EC18D3 /* PhotoDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailCollectionView.swift; sourceTree = "<group>"; };
+		7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailCollectionView.swift; sourceTree = "<group>"; };
 		7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryNavigationController.swift; sourceTree = "<group>"; };
 		7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		7125445C22C05ADC00A6ECDE /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +53,7 @@
 		7125447C22C06D9500A6ECDE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7125447E22C06E9C00A6ECDE /* Reusable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reusable+Extension.swift"; sourceTree = "<group>"; };
 		7125448122C0BF7600A6ECDE /* ScreenUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUtility.swift; sourceTree = "<group>"; };
+		7185B04B22C3607800A36E20 /* GalleryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailViewController.swift; sourceTree = "<group>"; };
 		71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridNavigationController.swift; sourceTree = "<group>"; };
 		71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		71F970BA22C1EC9600BCF92A /* PhotoDetailPushTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailPushTransition.swift; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 			children = (
 				7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */,
 				7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */,
+				7185B04B22C3607800A36E20 /* GalleryDetailViewController.swift */,
+				7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -158,7 +162,6 @@
 				71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */,
 				71F970BE22C2030100BCF92A /* PhotoGridViewController.swift */,
 				71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */,
-				7122ECA122C3563000EC18D3 /* PhotoDetailCollectionView.swift */,
 				71F970BA22C1EC9600BCF92A /* PhotoDetailPushTransition.swift */,
 				7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */,
 				7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */,
@@ -244,8 +247,9 @@
 				71F970BF22C2030100BCF92A /* PhotoGridViewController.swift in Sources */,
 				71FCB67922C1AD35001D3FFC /* TabBarController.swift in Sources */,
 				7125447F22C06E9C00A6ECDE /* Reusable+Extension.swift in Sources */,
+				7185B04C22C3607800A36E20 /* GalleryDetailViewController.swift in Sources */,
 				7125447622C06A8600A6ECDE /* DatePickerViewController.swift in Sources */,
-				7122ECA222C3563000EC18D3 /* PhotoDetailCollectionView.swift in Sources */,
+				7122ECA222C3563000EC18D3 /* GalleryDetailCollectionView.swift in Sources */,
 				7122EC9822C2EC2100EC18D3 /* DateTableNavigationController.swift in Sources */,
 				71F970B922C1EBFF00BCF92A /* PhotoDetailViewController.swift in Sources */,
 				7122EC9A22C2FC0B00EC18D3 /* DateUtility.swift in Sources */,
