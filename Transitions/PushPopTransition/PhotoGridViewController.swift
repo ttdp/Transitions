@@ -129,8 +129,6 @@ class PhotoGridCell: UICollectionViewCell {
 extension PhotoGridView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let width = (collectionView.frame.width - 6) / 4
-        print(width)
         return 60
     }
     

@@ -12,6 +12,22 @@ class PhotoGridNavigationController: UINavigationController {
     
     fileprivate var currentAnimationTransition: UIViewControllerAnimatedTransitioning? = nil
     
+    // The tab bar should be hidden if a PhotoDetailVC is anywhere in the stack.
+    var shouldHideTabBar: Bool {
+        let photoDetailInNavStack = self.viewControllers.contains(where: { (vc) -> Bool in
+            return vc.isKind(of: PhotoDetailViewController.self)
+        })
+        
+        let isPoppingFromPhotoDetail =
+            (self.currentAnimationTransition?.isKind(of: PhotoDetailPopTransition.self) ?? false)
+        
+        if isPoppingFromPhotoDetail {
+            return false
+        } else {
+            return photoDetailInNavStack
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,8 +65,8 @@ extension PhotoGridNavigationController: UINavigationControllerDelegate {
         return currentAnimationTransition as? UIViewControllerInteractiveTransitioning
     }
     
-//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-//        currentAnimationTransition = nil
-//    }
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        currentAnimationTransition = nil
+    }
     
 }

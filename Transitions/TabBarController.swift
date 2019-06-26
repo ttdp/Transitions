@@ -15,9 +15,12 @@ import UIKit
 class TabBarController: UITabBarController {
     
     fileprivate var isTabBarHidden: Bool = false
-    
-    fileprivate var isTabBarOffScreen: Bool {
-        return !tabBar.frame.intersects(view.frame)
+
+    fileprivate var shouldHideForPhotoGrid: Bool {
+        guard let navigation = selectedViewController as? PhotoGridNavigationController else {
+            return false
+        }
+        return navigation.shouldHideTabBar
     }
     
     override func viewDidLoad() {
@@ -29,13 +32,13 @@ class TabBarController: UITabBarController {
     func setupViews() {
         view.backgroundColor = .white
         
-        let mainNavigation = DateTableNavigationController(rootViewController: DateTableViewController())
-        mainNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        let dateNavigation = DateTableNavigationController(rootViewController: DateTableViewController())
+        dateNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         
-        let secondNavigation = PhotoGridNavigationController(rootViewController: PhotoGridViewController())
-        secondNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        let photoNavigation = PhotoGridNavigationController(rootViewController: PhotoGridViewController())
+        photoNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
         
-        viewControllers = [mainNavigation, secondNavigation]
+        viewControllers = [dateNavigation, photoNavigation]
     }
     
 }
@@ -45,9 +48,9 @@ class TabBarController: UITabBarController {
 extension TabBarController {
     
     func setTabBar(hidden: Bool, animated: Bool = true, alongside animator: UIViewPropertyAnimator? = nil) {
-        guard isTabBarHidden != hidden else { return }
-        
-        guard isTabBarOffScreen != hidden else { print("Here"); return }
+        if !hidden && shouldHideForPhotoGrid {
+            return
+        }
         
         isTabBarHidden = hidden
         
@@ -93,6 +96,7 @@ extension TabBarController {
                     tabBarRef?.isHidden = hidden
                 }
             }
+            
         } else {
             UIView.animate(withDuration: 0.3, animations: {
                 tabBarRef?.frame = endFrame
