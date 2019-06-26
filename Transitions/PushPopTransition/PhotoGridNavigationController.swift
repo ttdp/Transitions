@@ -30,6 +30,8 @@ extension PhotoGridNavigationController: UINavigationControllerDelegate {
         if let photoDetailVC = toVC as? PhotoDetailViewController, operation == .push {
             // Return a custom push animation.
             result = PhotoDetailPushTransition(fromDelegate: fromVC, toPhotoDetailVC: photoDetailVC)
+        } else if let photoDetailVC = fromVC as? PhotoDetailViewController, operation == .pop {
+            result = PhotoDetailPopTransition(toDelegate: toVC, fromPhotoDetailVC: photoDetailVC)
         } else {
             result = nil
         }

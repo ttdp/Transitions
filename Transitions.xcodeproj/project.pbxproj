@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7122EC9822C2EC2100EC18D3 /* DateTableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9722C2EC2100EC18D3 /* DateTableNavigationController.swift */; };
 		7122EC9A22C2FC0B00EC18D3 /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9922C2FC0B00EC18D3 /* DateUtility.swift */; };
+		7122EC9C22C3064000EC18D3 /* PhotoDetailPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */; };
 		7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125445F22C05ADC00A6ECDE /* AppDelegate.swift */; };
 		7125446722C05ADD00A6ECDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7125446622C05ADD00A6ECDE /* Assets.xcassets */; };
 		7125446A22C05ADD00A6ECDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7125446822C05ADD00A6ECDE /* LaunchScreen.storyboard */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		7122EC9722C2EC2100EC18D3 /* DateTableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableNavigationController.swift; sourceTree = "<group>"; };
 		7122EC9922C2FC0B00EC18D3 /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
+		7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailPopTransition.swift; sourceTree = "<group>"; };
 		7125445C22C05ADC00A6ECDE /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7125445F22C05ADC00A6ECDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7125446622C05ADD00A6ECDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				71F970BE22C2030100BCF92A /* PhotoGridViewController.swift */,
 				71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */,
 				71F970BA22C1EC9600BCF92A /* PhotoDetailPushTransition.swift */,
+				7122EC9B22C3064000EC18D3 /* PhotoDetailPopTransition.swift */,
 			);
 			path = PushPopTransition;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7122EC9C22C3064000EC18D3 /* PhotoDetailPopTransition.swift in Sources */,
 				7125447D22C06D9500A6ECDE /* UIView+Extension.swift in Sources */,
 				71F970BB22C1EC9600BCF92A /* PhotoDetailPushTransition.swift in Sources */,
 				7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */,
