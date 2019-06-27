@@ -22,6 +22,8 @@ struct ScreenUtility {
     static let quarterHeight = UIScreen.main.bounds.height / 4
     static let quarterWidth = UIScreen.main.bounds.width / 4
     
+    static let contentHeight = (UIScreen.main.bounds.height - 64 - 50) - (ScreenUtility.hasNotch ? (24 + 34) : 0)    // navigation bar & tab bar & notch
+    
     /// iPhone Notch: top + 24, bottom + 34
     static var hasNotch: Bool {
         if #available(iOS 11.0,  *) {

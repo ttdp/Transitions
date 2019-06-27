@@ -13,7 +13,7 @@ class GalleryNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationBar.isTranslucent = false
+//        navigationBar.isTranslucent = false
     }
     
 }
