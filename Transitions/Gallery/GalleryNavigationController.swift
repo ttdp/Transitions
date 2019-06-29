@@ -28,13 +28,21 @@ extension GalleryNavigationController: UINavigationControllerDelegate {
         if let galleryDetailVC = toVC as? GalleryDetailViewController, operation == .push {
             transition = GalleryDetailPushTransition(fromDelegate: fromVC, toGalleryDetailVC: galleryDetailVC)
         } else if let galleryDetailVC = fromVC as? GalleryDetailViewController, operation == .pop {
-            transition = GalleryDetailPopTransition(fromGalleryDetailVC: galleryDetailVC, toDelegate: toVC)
+            if galleryDetailVC.isInteractiveDismissing {
+                transition = GalleryDetailInteractiveDismissTransition(fromDelegate: galleryDetailVC, toDelegate: toVC)
+            } else {
+                transition = GalleryDetailPopTransition(fromGalleryDetailVC: galleryDetailVC, toDelegate: toVC)
+            }
         } else {
             transition = nil
         }
         
         currentAnimationTransition = transition
         return transition
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return currentAnimationTransition as? UIViewControllerInteractiveTransitioning
     }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {

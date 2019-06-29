@@ -26,6 +26,7 @@
 		7125448222C0BF7600A6ECDE /* ScreenUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125448122C0BF7600A6ECDE /* ScreenUtility.swift */; };
 		7185B04C22C3607800A36E20 /* GalleryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7185B04B22C3607800A36E20 /* GalleryDetailViewController.swift */; };
 		71A3D59D22C74FB5000C3924 /* GalleryDetailPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A3D59C22C74FB5000C3924 /* GalleryDetailPopTransition.swift */; };
+		71B3D51022C78A8700D228B4 /* GalleryDetailInteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B3D50F22C78A8700D228B4 /* GalleryDetailInteractiveDismissTransition.swift */; };
 		71E92A5222C65CDD00A37925 /* GalleryDetailPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E92A5122C65CDD00A37925 /* GalleryDetailPushTransition.swift */; };
 		71F970B722C1EAE900BCF92A /* PhotoGridNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */; };
 		71F970B922C1EBFF00BCF92A /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */; };
@@ -57,6 +58,7 @@
 		7125448122C0BF7600A6ECDE /* ScreenUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUtility.swift; sourceTree = "<group>"; };
 		7185B04B22C3607800A36E20 /* GalleryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailViewController.swift; sourceTree = "<group>"; };
 		71A3D59C22C74FB5000C3924 /* GalleryDetailPopTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailPopTransition.swift; sourceTree = "<group>"; };
+		71B3D50F22C78A8700D228B4 /* GalleryDetailInteractiveDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailInteractiveDismissTransition.swift; sourceTree = "<group>"; };
 		71E92A5122C65CDD00A37925 /* GalleryDetailPushTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailPushTransition.swift; sourceTree = "<group>"; };
 		71F970B622C1EAE900BCF92A /* PhotoGridNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridNavigationController.swift; sourceTree = "<group>"; };
 		71F970B822C1EBFF00BCF92A /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */,
 				71E92A5122C65CDD00A37925 /* GalleryDetailPushTransition.swift */,
 				71A3D59C22C74FB5000C3924 /* GalleryDetailPopTransition.swift */,
+				71B3D50F22C78A8700D228B4 /* GalleryDetailInteractiveDismissTransition.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				71F970B922C1EBFF00BCF92A /* PhotoDetailViewController.swift in Sources */,
 				7122EC9A22C2FC0B00EC18D3 /* DateUtility.swift in Sources */,
 				71F970BD22C1F97100BCF92A /* CGRect+Extension.swift in Sources */,
+				71B3D51022C78A8700D228B4 /* GalleryDetailInteractiveDismissTransition.swift in Sources */,
 				71A3D59D22C74FB5000C3924 /* GalleryDetailPopTransition.swift in Sources */,
 				71F970B722C1EAE900BCF92A /* PhotoGridNavigationController.swift in Sources */,
 				7122ECA722C35AF400EC18D3 /* GalleryViewController.swift in Sources */,

@@ -19,6 +19,7 @@ class GalleryDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        setupPanGesture()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +45,35 @@ class GalleryDetailViewController: UIViewController {
         view.addSubview(detailCollection)
         view.addConstraints(format: "H:|[v0]|", views: detailCollection)
         view.addConstraints(format: "V:|[v0]|", views: detailCollection)
+    }
+    
+    // MARK: Pan Gesture
+    
+    private let dismissPanGesture = UIPanGestureRecognizer()
+    
+    var isInteractiveDismissing: Bool = false
+    
+    weak var transitionController: GalleryDetailInteractiveDismissTransition? = nil
+    
+    private func setupPanGesture() {
+        view.addGestureRecognizer(dismissPanGesture)
+        dismissPanGesture.addTarget(self, action: #selector(panGestureDidChange))
+    }
+    
+    @objc private func panGestureDidChange(_ gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            isInteractiveDismissing = true
+            navigationController?.popViewController(animated: true)
+        case .cancelled, .failed, .ended:
+            isInteractiveDismissing = false
+        case .changed, .possible:
+            break
+        @unknown default:
+            break
+        }
+        
+        self.transitionController?.didPanWith(gestureRecognizer: gesture)
     }
     
 }
