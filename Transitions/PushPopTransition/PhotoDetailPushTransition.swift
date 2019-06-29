@@ -78,8 +78,8 @@ class PhotoDetailPushTransition: NSObject, UIViewControllerAnimatedTransitioning
         
         // Now is the animation
         let duration = transitionDuration(using: transitionContext)
-        let sping: CGFloat = 0.95
-        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: sping) {
+        let spring: CGFloat = 0.95
+        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: spring) {
             self.transitionImageView.frame = toReferenceFrame
             toView?.alpha = 1
         }

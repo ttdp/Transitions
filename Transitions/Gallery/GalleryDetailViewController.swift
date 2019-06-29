@@ -19,6 +19,20 @@ class GalleryDetailViewController: UIViewController {
         setupViews()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let indexPath = selectedIndexPath {
+            detailCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        }
+    }
+    
     // MARK: Views
     
     lazy var detailCollection: GalleryDetailCollectionView = {
@@ -34,6 +48,39 @@ class GalleryDetailViewController: UIViewController {
         view.addSubview(detailCollection)
         view.addConstraints(format: "H:|[v0]|", views: detailCollection)
         view.addConstraints(format: "V:|[v0]|", views: detailCollection)
+    }
+    
+}
+
+extension GalleryDetailViewController: GalleryDetailTransitionAnimatorDelegate {
+    
+    func transitionWillStart() {
+        detailCollection.isHidden = true
+    }
+    
+    func transitionDidEnd() {
+        detailCollection.isHidden = false
+    }
+    
+    func referenceImage() -> UIImage? {
+//        guard let indexPath = selectedIndexPath else {
+//            return nil
+//        }
+//
+//        let cell = detailCollection.cellForItem(at: indexPath) as! GalleryDetailCollectionCell
+//        return cell.photoView.image
+        return nil
+    }
+    
+    func imageFrame() -> CGRect? {
+//        guard let indexPath = selectedIndexPath else {
+//            return nil
+//        }
+//
+//        let cell = detailCollection.cellForItem(at: indexPath) as! GalleryDetailCollectionCell
+//        let rect = CGRect.makeRect(aspectRatio: cell.photoView.image!.size, insideRect: cell.photoView.bounds)
+//        return rect
+        return nil
     }
     
 }

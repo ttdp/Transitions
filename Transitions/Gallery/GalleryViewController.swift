@@ -10,6 +10,8 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
+    fileprivate var lastSelectedIndexPath: IndexPath? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,6 +116,8 @@ extension GalleryCollectionView: UICollectionViewDelegate {
         let galleryDetailVC = GalleryDetailViewController()
         galleryDetailVC.selectedIndexPath = indexPath
         galleryDetailVC.images = images
+        
+        controller.lastSelectedIndexPath = indexPath
         controller.navigationController?.pushViewController(galleryDetailVC, animated: true)
     }
     
@@ -124,6 +128,37 @@ extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 6) / 4
         return CGSize(width: width, height: width)
+    }
+    
+}
+
+extension GalleryViewController: GalleryDetailTransitionAnimatorDelegate {
+    
+    func transitionWillStart() {
+        guard let lastSelected = lastSelectedIndexPath else { return }
+        galleryCollection.cellForItem(at: lastSelected)?.isHidden = true
+    }
+    
+    func transitionDidEnd() {
+        guard let lastSelected = lastSelectedIndexPath else { return }
+        galleryCollection.cellForItem(at: lastSelected)?.isHidden = false
+    }
+    
+    func referenceImage() -> UIImage? {
+        guard let lastSelected = lastSelectedIndexPath, let cell = galleryCollection.cellForItem(at: lastSelected) as? GalleryCollectionCell
+            else {
+                return nil
+        }
+        return cell.photoView.image
+    }
+    
+    func imageFrame() -> CGRect? {
+        guard let lastSelected = lastSelectedIndexPath, let cell = galleryCollection.cellForItem(at: lastSelected) as? GalleryCollectionCell
+            else {
+                return nil
+        }
+        
+        return galleryCollection.convert(cell.frame, to: view)
     }
     
 }
