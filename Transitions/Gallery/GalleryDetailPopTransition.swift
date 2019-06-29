@@ -1,17 +1,17 @@
 //
-//  PhotoDetailPopTransition.swift
+//  GalleryDetailPopTransition.swift
 //  Transitions
 //
-//  Created by Tian Tong on 2019/6/26.
+//  Created by Tian Tong on 2019/6/29.
 //  Copyright © 2019 TTDP. All rights reserved.
 //
 
 import UIKit
 
-class PhotoDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class GalleryDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
-    fileprivate let toDelegate: PhotoDetailTransitionAnimatorDelegate
-    fileprivate let photoDetailVC: PhotoDetailViewController
+    fileprivate let galleryDetailVC: GalleryDetailViewController
+    fileprivate let toDelegate: GalleryDetailTransitionAnimatorDelegate
     
     fileprivate let transitionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -21,13 +21,13 @@ class PhotoDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning 
         return imageView
     }()
     
-    init?(toDelegate: Any, fromPhotoDetailVC photoDetailVC: PhotoDetailViewController) {
-        guard let toDelegate = toDelegate as? PhotoDetailTransitionAnimatorDelegate else {
+    init?(fromGalleryDetailVC galleryDetailVC: GalleryDetailViewController, toDelegate: Any) {
+        guard let toDelegate = toDelegate as? GalleryDetailTransitionAnimatorDelegate else {
             return nil
         }
         
+        self.galleryDetailVC = galleryDetailVC
         self.toDelegate = toDelegate
-        self.photoDetailVC = photoDetailVC
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -39,17 +39,23 @@ class PhotoDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning 
         let fromView = transitionContext.view(forKey: .from)
         
         let containerView = transitionContext.containerView
-        let fromReferenceFrame = photoDetailVC.imageFrame()!
+        let fromReferenceFrame = galleryDetailVC.imageFrame()!
         
-        let transitionImage = photoDetailVC.referenceImage()
+        let transitionImage = galleryDetailVC.referenceImage()
         transitionImageView.image = transitionImage
         transitionImageView.frame = fromReferenceFrame
         
-        [toView, fromView].compactMap { $0 }.forEach { containerView.addSubview($0)
+        [toView, fromView].compactMap { $0 }.forEach {
+            containerView.addSubview($0)
         }
         containerView.addSubview(transitionImageView)
         
-        photoDetailVC.transitionWillStart()
+        guard let galleryVC = toDelegate as? GalleryViewController else {
+            return
+        }
+        galleryVC.lastSelectedIndexPath = galleryDetailVC.selectedIndexPath
+        
+        galleryDetailVC.transitionWillStart()
         toDelegate.transitionWillStart()
         
         let duration = transitionDuration(using: transitionContext)
@@ -61,30 +67,34 @@ class PhotoDetailPopTransition: NSObject, UIViewControllerAnimatedTransitioning 
         animator.addCompletion { position in
             self.transitionImageView.removeFromSuperview()
             self.transitionImageView.image = nil
+            
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             self.toDelegate.transitionDidEnd()
-            self.photoDetailVC.transitionDidEnd()
+            self.galleryDetailVC.transitionDidEnd()
         }
         
-        if let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController {
-            tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
-        }
+//        if let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController {
+//            tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
+//        }
         
-        // Here, we kick off the animation.
         animator.startAnimation()
         
-        // By delaying 0.005s, I get a layout-refresh on toViewController,
-        // which means its collectionView has updated its layout,
-        // and our toDelegate?.imageFrame() is accurate.
+        // If pop back image is not the first displayed one, its galleryVC's collection cell maybe outoff the screen.
+        if toDelegate.imageFrame() == nil {
+            galleryVC.adjustCollectionViewOffset()
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
             animator.addAnimations {
-                let toReferenceFrame = self.toDelegate.imageFrame() ?? PhotoDetailPopTransition.defaultOffscreenFrameForDismissal(transitionImageSize: fromReferenceFrame.size, screenHeight: containerView.bounds.height)
+                let toReferenceFrame = self.toDelegate.imageFrame() ?? GalleryDetailPopTransition.defaultOffscreenFrameForDismissal(transitionImageSize: fromReferenceFrame.size, screenHeight: containerView.bounds.height)
                 self.transitionImageView.frame = toReferenceFrame
             }
         }
     }
     
+    // Note: Not used
     static func defaultOffscreenFrameForDismissal(transitionImageSize: CGSize, screenHeight: CGFloat) -> CGRect {
+        print(#function)
         return CGRect(x: 0, y: screenHeight, width: transitionImageSize.width, height: transitionImageSize.height)
     }
     

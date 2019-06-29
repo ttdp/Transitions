@@ -27,6 +27,8 @@ extension GalleryNavigationController: UINavigationControllerDelegate {
         
         if let galleryDetailVC = toVC as? GalleryDetailViewController, operation == .push {
             transition = GalleryDetailPushTransition(fromDelegate: fromVC, toGalleryDetailVC: galleryDetailVC)
+        } else if let galleryDetailVC = fromVC as? GalleryDetailViewController, operation == .pop {
+            transition = GalleryDetailPopTransition(fromGalleryDetailVC: galleryDetailVC, toDelegate: toVC)
         } else {
             transition = nil
         }

@@ -60,6 +60,7 @@ class GalleryDetailPushTransition: NSObject, UIViewControllerAnimatedTransitioni
         containerView.addSubview(transitionImageView)
         
         let toReferenceFrame = GalleryDetailPushTransition.calculateZoomInImageFrame(image: transitionImage, forView: toView!)
+        galleryDetailVC.transitionFrame = toReferenceFrame
         
         fromDelegate.transitionWillStart()
         galleryDetailVC.transitionWillStart()
@@ -103,6 +104,7 @@ class GalleryDetailPushTransition: NSObject, UIViewControllerAnimatedTransitioni
         // the exactly size with toView
         let offsetY: CGFloat = ScreenUtility.hasNotch ? 2.5 : 7.5
         let fixedRect = CGRect(x: rect.origin.x, y: rect.origin.y + offsetY, width: rect.size.width, height: rect.size.height)
+
         return fixedRect
     }
     

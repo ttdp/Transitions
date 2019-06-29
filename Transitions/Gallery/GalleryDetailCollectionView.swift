@@ -10,7 +10,7 @@ import UIKit
 
 class GalleryDetailCollectionView: UICollectionView {
     
-    var controller: GalleryDetailViewController!
+    weak var controller: GalleryDetailViewController!
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)

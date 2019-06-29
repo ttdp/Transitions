@@ -61,7 +61,7 @@ extension DateTableViewController: DatePickerViewControllerDelegate {
 
 class DateTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     
-    var controller: DateTableViewController!
+    weak var controller: DateTableViewController!
     var items = ["2019-06-26 08:07:00"]
 
     init() {

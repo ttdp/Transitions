@@ -35,21 +35,6 @@ class PhotoDetailViewController: UIViewController {
         view.addConstraints(format: "V:|[v0]|", views: photoView)
     }
     
-//    // MARK: Photo Collection View
-//
-//    lazy var photoCollection: PhotoDetailCollectionView = {
-//        let collectionView = PhotoDetailCollectionView()
-//        collectionView.registerCell(PhotoDetailCollectionCell.self)
-//        collectionView.controller = self
-//        return collectionView
-//    }()
-//
-//    private func setupViews() {
-//        view.addSubview(photoCollection)
-//        view.addConstraints(format: "H:|[v0]|", views: photoCollection)
-//        view.addConstraints(format: "V:|[v0]|", views: photoCollection)
-//    }
-    
     // MARK: - Drag To Dismiss
     
     private let dismissPanGesture = UIPanGestureRecognizer()

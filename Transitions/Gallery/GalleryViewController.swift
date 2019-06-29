@@ -10,7 +10,7 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
-    fileprivate var lastSelectedIndexPath: IndexPath? = nil
+    var lastSelectedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,13 @@ class GalleryViewController: UIViewController {
         view.addSubview(galleryCollection)
         view.addConstraints(format: "H:|[v0]|", views: galleryCollection)
         view.addConstraints(format: "V:|[v0]|", views: galleryCollection)
+    }
+    
+    // When pop back from detail view, the image may not be the same with original one,
+    // scroll collectionView to the current image position.
+    func adjustCollectionViewOffset() {
+        guard let indexPath = lastSelectedIndexPath else { return }
+        galleryCollection.scrollToItem(at: indexPath, at: .bottom, animated: false)
     }
     
 }
@@ -94,11 +101,11 @@ class GalleryCollectionCell: UICollectionViewCell {
 extension GalleryCollectionView: UICollectionViewDataSource {
     
     var images: [UIImage] {
-        return (31...60).map { UIImage(named: "LA\($0)")! }
+        return (31...60).map { UIImage(named: "LA\($0)")! } + (31...60).map { UIImage(named: "LA\($0)")! }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -13,18 +13,14 @@ class GalleryDetailViewController: UIViewController {
     var images: [UIImage] = []
     var selectedIndexPath: IndexPath? = nil
     
+    var transitionFrame: CGRect? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -63,24 +59,15 @@ extension GalleryDetailViewController: GalleryDetailTransitionAnimatorDelegate {
     }
     
     func referenceImage() -> UIImage? {
-//        guard let indexPath = selectedIndexPath else {
-//            return nil
-//        }
-//
-//        let cell = detailCollection.cellForItem(at: indexPath) as! GalleryDetailCollectionCell
-//        return cell.photoView.image
-        return nil
+        guard let indexPath = detailCollection.indexPathsForVisibleItems.first else {
+            return nil
+        }
+        selectedIndexPath = indexPath
+        return images[indexPath.row]
     }
     
     func imageFrame() -> CGRect? {
-//        guard let indexPath = selectedIndexPath else {
-//            return nil
-//        }
-//
-//        let cell = detailCollection.cellForItem(at: indexPath) as! GalleryDetailCollectionCell
-//        let rect = CGRect.makeRect(aspectRatio: cell.photoView.image!.size, insideRect: cell.photoView.bounds)
-//        return rect
-        return nil
+        return transitionFrame
     }
     
 }
