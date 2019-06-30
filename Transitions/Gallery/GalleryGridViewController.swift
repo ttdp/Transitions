@@ -1,5 +1,5 @@
 //
-//  GalleryViewController.swift
+//  GalleryGridViewController.swift
 //  Transitions
 //
 //  Created by Tian Tong on 2019/6/26.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GalleryViewController: UIViewController {
+class GalleryGridViewController: UIViewController {
     
     var selectedIndexPath: IndexPath? = nil
     
@@ -46,7 +46,7 @@ class GalleryViewController: UIViewController {
 
 class GalleryCollectionView: UICollectionView {
     
-    var controller: GalleryViewController!
+    var controller: GalleryGridViewController!
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -139,7 +139,7 @@ extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension GalleryViewController: GalleryDetailTransitionAnimatorDelegate {
+extension GalleryGridViewController: GalleryDetailTransitionAnimatorDelegate {
     
     func transitionWillStart() {
         guard let indexPath = selectedIndexPath else { return }

@@ -23,6 +23,13 @@ class TabBarController: UITabBarController {
         return navigation.shouldHideTabBar
     }
     
+    fileprivate var shouldHideForGalleryGrid: Bool {
+        guard let navigation = selectedViewController as? GalleryGridNavigationController else {
+            return false
+        }
+        return navigation.shouldHideTabBar
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +47,7 @@ class TabBarController: UITabBarController {
         let photoNavigation = PhotoGridNavigationController(rootViewController: PhotoGridViewController())
         photoNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
         
-        let galleryNavigation = GalleryNavigationController(rootViewController: GalleryViewController())
+        let galleryNavigation = GalleryGridNavigationController(rootViewController: GalleryGridViewController())
         galleryNavigation.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
         
         viewControllers = [dateNavigation, photoNavigation, galleryNavigation]
@@ -54,6 +61,12 @@ extension TabBarController {
     
     func setTabBar(hidden: Bool, animated: Bool = true, alongside animator: UIViewPropertyAnimator? = nil) {
         if !hidden && shouldHideForPhotoGrid {
+            print("Here")
+            return
+        }
+        
+        if !hidden && shouldHideForGalleryGrid {
+            print("There")
             return
         }
         

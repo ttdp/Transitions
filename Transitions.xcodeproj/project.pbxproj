@@ -13,8 +13,8 @@
 		7122EC9E22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */; };
 		7122ECA022C3339900EC18D3 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122EC9F22C3339900EC18D3 /* CGFloat+Extension.swift */; };
 		7122ECA222C3563000EC18D3 /* GalleryDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */; };
-		7122ECA522C35A9E00EC18D3 /* GalleryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */; };
-		7122ECA722C35AF400EC18D3 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */; };
+		7122ECA522C35A9E00EC18D3 /* GalleryGridNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA422C35A9E00EC18D3 /* GalleryGridNavigationController.swift */; };
+		7122ECA722C35AF400EC18D3 /* GalleryGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7122ECA622C35AF400EC18D3 /* GalleryGridViewController.swift */; };
 		7125446022C05ADC00A6ECDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7125445F22C05ADC00A6ECDE /* AppDelegate.swift */; };
 		7125446722C05ADD00A6ECDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7125446622C05ADD00A6ECDE /* Assets.xcassets */; };
 		7125446A22C05ADD00A6ECDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7125446822C05ADD00A6ECDE /* LaunchScreen.storyboard */; };
@@ -43,8 +43,8 @@
 		7122EC9D22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailInteractiveDismissTransition.swift; sourceTree = "<group>"; };
 		7122EC9F22C3339900EC18D3 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailCollectionView.swift; sourceTree = "<group>"; };
-		7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryNavigationController.swift; sourceTree = "<group>"; };
-		7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		7122ECA422C35A9E00EC18D3 /* GalleryGridNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridNavigationController.swift; sourceTree = "<group>"; };
+		7122ECA622C35AF400EC18D3 /* GalleryGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridViewController.swift; sourceTree = "<group>"; };
 		7125445C22C05ADC00A6ECDE /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7125445F22C05ADC00A6ECDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7125446622C05ADD00A6ECDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		7122ECA322C359F500EC18D3 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				7122ECA422C35A9E00EC18D3 /* GalleryNavigationController.swift */,
-				7122ECA622C35AF400EC18D3 /* GalleryViewController.swift */,
+				7122ECA422C35A9E00EC18D3 /* GalleryGridNavigationController.swift */,
+				7122ECA622C35AF400EC18D3 /* GalleryGridViewController.swift */,
 				7185B04B22C3607800A36E20 /* GalleryDetailViewController.swift */,
 				7122ECA122C3563000EC18D3 /* GalleryDetailCollectionView.swift */,
 				71E92A5122C65CDD00A37925 /* GalleryDetailPushTransition.swift */,
@@ -267,8 +267,8 @@
 				71B3D51022C78A8700D228B4 /* GalleryDetailInteractiveDismissTransition.swift in Sources */,
 				71A3D59D22C74FB5000C3924 /* GalleryDetailPopTransition.swift in Sources */,
 				71F970B722C1EAE900BCF92A /* PhotoGridNavigationController.swift in Sources */,
-				7122ECA722C35AF400EC18D3 /* GalleryViewController.swift in Sources */,
-				7122ECA522C35A9E00EC18D3 /* GalleryNavigationController.swift in Sources */,
+				7122ECA722C35AF400EC18D3 /* GalleryGridViewController.swift in Sources */,
+				7122ECA522C35A9E00EC18D3 /* GalleryGridNavigationController.swift in Sources */,
 				7122ECA022C3339900EC18D3 /* CGFloat+Extension.swift in Sources */,
 				7125447322C05D1500A6ECDE /* DateTableViewController.swift in Sources */,
 				7122EC9E22C3133600EC18D3 /* PhotoDetailInteractiveDismissTransition.swift in Sources */,

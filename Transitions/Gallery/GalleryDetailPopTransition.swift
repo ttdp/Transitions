@@ -37,7 +37,7 @@ class GalleryDetailPopTransition: NSObject, UIViewControllerAnimatedTransitionin
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let fromView = transitionContext.view(forKey: .from)
         let toView = transitionContext.view(forKey: .to)
-        guard let galleryVC = toDelegate as? GalleryViewController else {
+        guard let galleryVC = toDelegate as? GalleryGridViewController else {
             return
         }
         
@@ -90,9 +90,9 @@ class GalleryDetailPopTransition: NSObject, UIViewControllerAnimatedTransitionin
             animator.startAnimation()
         }
 
-//        if let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController {
-//            tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
-//        }
+        if let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController {
+            tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
+        }
 
     }
     

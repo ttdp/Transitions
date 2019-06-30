@@ -154,7 +154,7 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
             let fromImageFrame = fromDelegate.imageFrame(),
             let fromImage = fromDelegate.referenceImage(),
             let fromVC = transitionContext.viewController(forKey: .from) as? GalleryDetailViewController,
-            let toVC = transitionContext.viewController(forKey: .to) as? GalleryViewController
+            let toVC = transitionContext.viewController(forKey: .to) as? GalleryGridViewController
         else {
             fatalError()
         }
@@ -189,9 +189,9 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
             self.toDelegate?.transitionWillStart()
         }
         
-//        if let tabBar = toVC.tabBarController as? TabBarController {
-//            tabBar.setTabBar(hidden: false, animated: true, alongside: backgroundAnimation)
-//        }
+        if let tabBar = toVC.tabBarController as? TabBarController {
+            tabBar.setTabBar(hidden: false, animated: true, alongside: backgroundAnimation)
+        }
     }
     
 }

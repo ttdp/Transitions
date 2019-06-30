@@ -83,9 +83,9 @@ class GalleryDetailPushTransition: NSObject, UIViewControllerAnimatedTransitioni
             self.fromDelegate.transitionDidEnd()
         }
         
-//        if let tabBar = transitionContext.viewController(forKey: .from)?.tabBarController as? TabBarController {
-//            tabBar.setTabBar(hidden: true, animated: true, alongside: animator)
-//        }
+        if let tabBar = transitionContext.viewController(forKey: .from)?.tabBarController as? TabBarController {
+            tabBar.setTabBar(hidden: true, animated: true, alongside: animator)
+        }
         
         animator.startAnimation()
     }

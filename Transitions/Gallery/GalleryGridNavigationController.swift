@@ -1,5 +1,5 @@
 //
-//  GalleryNavigationController.swift
+//  GalleryGridNavigationController.swift
 //  Transitions
 //
 //  Created by Tian Tong on 2019/6/26.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GalleryNavigationController: UINavigationController {
+class GalleryGridNavigationController: UINavigationController {
     
     fileprivate var currentAnimationTransition: UIViewControllerAnimatedTransitioning? = nil
     
@@ -20,7 +20,7 @@ class GalleryNavigationController: UINavigationController {
     
 }
 
-extension GalleryNavigationController: UINavigationControllerDelegate {
+extension GalleryGridNavigationController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let transition: UIViewControllerAnimatedTransitioning?
@@ -47,6 +47,24 @@ extension GalleryNavigationController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         currentAnimationTransition = nil
+    }
+    
+}
+
+extension GalleryGridNavigationController {
+    
+    var shouldHideTabBar: Bool {
+        let galleryDetailNavStack = self.viewControllers.contains(where: { (vc) -> Bool in
+            return vc.isKind(of: GalleryDetailViewController.self)
+        })
+        
+        let isPoppingFromGalleryDetail = (self.currentAnimationTransition?.isKind(of: GalleryDetailPopTransition.self) ?? false)
+        
+        if isPoppingFromGalleryDetail {
+            return false
+        } else {
+            return galleryDetailNavStack
+        }
     }
     
 }
