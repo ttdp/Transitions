@@ -60,7 +60,6 @@ class GalleryDetailPushTransition: NSObject, UIViewControllerAnimatedTransitioni
         containerView.addSubview(transitionImageView)
         
         let toReferenceFrame = GalleryDetailPushTransition.calculateZoomInImageFrame(image: transitionImage, forView: toView!)
-        galleryDetailVC.transitionFrame = toReferenceFrame
         
         fromDelegate.transitionWillStart()
         galleryDetailVC.transitionWillStart()

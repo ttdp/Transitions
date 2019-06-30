@@ -13,8 +13,6 @@ class GalleryDetailViewController: UIViewController {
     var images: [UIImage] = []
     var selectedIndexPath: IndexPath? = nil
     
-    var transitionFrame: CGRect? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,7 +95,16 @@ extension GalleryDetailViewController: GalleryDetailTransitionAnimatorDelegate {
     }
     
     func imageFrame() -> CGRect? {
-        return transitionFrame
+        guard let image = referenceImage() else { return nil }
+        
+        let rect = CGRect.makeRect(aspectRatio: image.size, insideRect: view.bounds)
+        
+        // Note: Needs extra 2.5(has notch) or 7.5(no notch) y to be
+        // the exactly size with toView
+        let offsetY: CGFloat = ScreenUtility.hasNotch ? 2.5 : 7.5
+        let fixedRect = CGRect(x: rect.origin.x, y: rect.origin.y + offsetY, width: rect.size.width, height: rect.size.height)
+        
+        return fixedRect
     }
     
 }

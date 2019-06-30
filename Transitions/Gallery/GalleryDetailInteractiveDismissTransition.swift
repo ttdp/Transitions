@@ -150,7 +150,7 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
             let fromImageFrame = fromDelegate.imageFrame(),
             let fromImage = fromDelegate.referenceImage(),
             let fromVC = transitionContext.viewController(forKey: .from) as? GalleryDetailViewController,
-            let toVC = transitionContext.viewController(forKey: .to)
+            let toVC = transitionContext.viewController(forKey: .to) as? GalleryViewController
         else {
                 fatalError()
         }
@@ -159,12 +159,18 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
         self.toVC = toVC
         fromVC.transitionController = self
         
+        toVC.lastSelectedIndexPath = fromVC.selectedIndexPath
+        
+        if toDelegate?.imageFrame() == nil {
+            toVC.adjustCollectionViewOffset()
+        }
+        
         fromDelegate.transitionWillStart()
         toDelegate?.transitionWillStart()
         
         self.fromReferenceImageViewFrame = fromImageFrame
-        self.toReferenceImageViewFrame = GalleryDetailPopTransition.defaultOffscreenFrameForDismissal(transitionImageSize: fromImageFrame.size, screenHeight: fromView.bounds.height)
-        
+        self.toReferenceImageViewFrame = self.toDelegate?.imageFrame()
+
         [toView, fromView, transitionImageView].forEach {
             containerView.addSubview($0)
         }
