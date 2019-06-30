@@ -121,7 +121,7 @@ extension GalleryCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let galleryDetailVC = GalleryDetailViewController()
-        galleryDetailVC.initialIndexPath = indexPath
+        galleryDetailVC.selectedIndexPath = indexPath
         galleryDetailVC.images = images
         
         controller.selectedIndexPath = indexPath

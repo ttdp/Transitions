@@ -87,9 +87,9 @@ extension GalleryDetailCollectionView: UICollectionViewDelegate {
         // The willDisplay method will always be called from IndexPath(row: 0, section: 0),
         // even the initail postion is not IndexPath(row: 0, section: 0),
         // for this case, we use 'isAppeared' to pervent this method to override the initial position.
-        if controller.isAppeared {
-            controller.initialIndexPath = indexPath
-        }
+//        if controller.isAppeared {
+//            controller.initialIndexPath = indexPath
+//        }
     }
     
 }

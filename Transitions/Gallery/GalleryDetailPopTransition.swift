@@ -56,7 +56,7 @@ class GalleryDetailPopTransition: NSObject, UIViewControllerAnimatedTransitionin
         
         // If pop back image is not the first displayed one,
         // the galleryVC's collection cell maybe out off the screen.
-        galleryVC.selectedIndexPath = galleryDetailVC.currentIndexPath
+        galleryVC.selectedIndexPath = galleryDetailVC.selectedIndexPath
 
         if galleryVC.imageFrame() == nil {
             galleryVC.adjustCollectionViewOffset()

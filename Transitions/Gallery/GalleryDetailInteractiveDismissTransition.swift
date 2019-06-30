@@ -73,8 +73,12 @@ class GalleryDetailInteractiveDismissTransition: NSObject {
     private func completeTransition(didCancel: Bool) {
         self.backgroundAnimation?.isReversed = didCancel
         
-        let transitionContext = self.transitionContext!
-        let backgroundAnimation = self.backgroundAnimation!
+        guard
+            let transitionContext = self.transitionContext,
+            let backgroundAnimation = self.backgroundAnimation
+        else {
+            return
+        }
         
         let completionDuration: Double
         let completionDamping: CGFloat
@@ -152,21 +156,18 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
             let fromVC = transitionContext.viewController(forKey: .from) as? GalleryDetailViewController,
             let toVC = transitionContext.viewController(forKey: .to) as? GalleryViewController
         else {
-                fatalError()
+            fatalError()
         }
         
         self.fromVC = fromVC
         self.toVC = toVC
         fromVC.transitionController = self
         
-        toVC.selectedIndexPath = fromVC.currentIndexPath
+        toVC.selectedIndexPath = fromVC.selectedIndexPath
         
         if toDelegate?.imageFrame() == nil {
             toVC.adjustCollectionViewOffset()
         }
-        
-        fromDelegate.transitionWillStart()
-        toDelegate?.transitionWillStart()
         
         self.fromReferenceImageViewFrame = fromImageFrame
         self.toReferenceImageViewFrame = self.toDelegate?.imageFrame()
@@ -179,7 +180,13 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
         transitionImageView.frame = fromImageFrame
         
         self.backgroundAnimation = UIViewPropertyAnimator(duration: 1, dampingRatio: 1) {
-            fromView.alpha = 0.5
+            fromView.alpha = 0
+        }
+        
+        // After 0.005 to let collection view do the layout adjustment.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
+            self.fromDelegate.transitionWillStart()
+            self.toDelegate?.transitionWillStart()
         }
         
 //        if let tabBar = toVC.tabBarController as? TabBarController {

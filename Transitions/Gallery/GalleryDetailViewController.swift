@@ -12,12 +12,13 @@ class GalleryDetailViewController: UIViewController {
     
     var images: [UIImage] = []
     
-    var isAppeared: Bool = false
-    var initialIndexPath: IndexPath?
-    var currentIndexPath: IndexPath? {
-        return detailCollection.indexPathsForVisibleItems.first
-    }
+//    var isAppeared: Bool = false
+//    var initialIndexPath: IndexPath?
+//    var currentIndexPath: IndexPath? {
+//        return detailCollection.indexPathsForVisibleItems.first
+//    }
     
+    // Single value for truth, instead of 'isAppeard', 'initialIndexPath', "currentIndexPath"
     var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -30,7 +31,7 @@ class GalleryDetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let indexPath = initialIndexPath {
+        if let indexPath = selectedIndexPath {
             detailCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         }
         
@@ -39,7 +40,7 @@ class GalleryDetailViewController: UIViewController {
         // we use 'isAppeard' to judge if needs update initial indexPath in the willDisplay method,
         // becasue if pan gesture cancelled from other cell, viewDidAppear will be called again,
         // and the collection should scroll to the other cell's position.
-        isAppeared = true
+//        isAppeared = true
     }
     
     // MARK: Views
@@ -101,7 +102,8 @@ extension GalleryDetailViewController: GalleryDetailTransitionAnimatorDelegate {
     }
     
     func referenceImage() -> UIImage? {
-        guard let indexPath = currentIndexPath else {
+        selectedIndexPath = detailCollection.indexPathsForVisibleItems.first
+        guard let indexPath = selectedIndexPath else {
             return nil
         }
         return images[indexPath.row]
