@@ -10,7 +10,7 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
-    var lastSelectedIndexPath: IndexPath? = nil
+    var selectedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class GalleryViewController: UIViewController {
     // When pop back from detail view, the image may not be the same with original one,
     // scroll collectionView to the current image position.
     func adjustCollectionViewOffset() {
-        guard let indexPath = lastSelectedIndexPath else { return }
+        guard let indexPath = selectedIndexPath else { return }
         galleryCollection.scrollToItem(at: indexPath, at: .bottom, animated: false)
     }
     
@@ -121,10 +121,10 @@ extension GalleryCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let galleryDetailVC = GalleryDetailViewController()
-        galleryDetailVC.selectedIndexPath = indexPath
+        galleryDetailVC.initialIndexPath = indexPath
         galleryDetailVC.images = images
         
-        controller.lastSelectedIndexPath = indexPath
+        controller.selectedIndexPath = indexPath
         controller.navigationController?.pushViewController(galleryDetailVC, animated: true)
     }
     
@@ -142,30 +142,29 @@ extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
 extension GalleryViewController: GalleryDetailTransitionAnimatorDelegate {
     
     func transitionWillStart() {
-        guard let lastSelected = lastSelectedIndexPath else { return }
-        galleryCollection.cellForItem(at: lastSelected)?.isHidden = true
+        guard let indexPath = selectedIndexPath else { return }
+        galleryCollection.cellForItem(at: indexPath)?.isHidden = true
     }
     
     func transitionDidEnd() {
-        guard let lastSelected = lastSelectedIndexPath else { return }
-        galleryCollection.cellForItem(at: lastSelected)?.isHidden = false
+        guard let indexPath = selectedIndexPath else { return }
+        galleryCollection.cellForItem(at: indexPath)?.isHidden = false
     }
     
     func referenceImage() -> UIImage? {
-        guard let lastSelected = lastSelectedIndexPath, let cell = galleryCollection.cellForItem(at: lastSelected) as? GalleryCollectionCell
-            else {
-                return nil
-        }
+        guard let cell = selectedCell() else { return nil }
         return cell.photoView.image
     }
     
     func imageFrame() -> CGRect? {
-        guard let lastSelected = lastSelectedIndexPath, let cell = galleryCollection.cellForItem(at: lastSelected) as? GalleryCollectionCell
-            else {
-                return nil
-        }
-        
+        guard let cell = selectedCell() else { return nil }
         return galleryCollection.convert(cell.frame, to: view)
+    }
+    
+    private func selectedCell() -> GalleryCollectionCell? {
+        guard let indexPath = selectedIndexPath else { return nil }
+        let cell = galleryCollection.cellForItem(at: indexPath) as? GalleryCollectionCell
+        return cell
     }
     
 }

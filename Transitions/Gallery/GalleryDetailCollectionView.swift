@@ -81,6 +81,19 @@ extension GalleryDetailCollectionView: UICollectionViewDataSource {
     
 }
 
+extension GalleryDetailCollectionView: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // The willDisplay method will always be called from IndexPath(row: 0, section: 0),
+        // even the initail postion is not IndexPath(row: 0, section: 0),
+        // for this case, we use 'isAppeared' to pervent this method to override the initial position.
+        if controller.isAppeared {
+            controller.initialIndexPath = indexPath
+        }
+    }
+    
+}
+
 extension GalleryDetailCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

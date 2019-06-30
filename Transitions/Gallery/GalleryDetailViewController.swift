@@ -11,7 +11,14 @@ import UIKit
 class GalleryDetailViewController: UIViewController {
     
     var images: [UIImage] = []
-    var selectedIndexPath: IndexPath? = nil
+    
+    var isAppeared: Bool = false
+    var initialIndexPath: IndexPath?
+    var currentIndexPath: IndexPath? {
+        return detailCollection.indexPathsForVisibleItems.first
+    }
+    
+    var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +29,17 @@ class GalleryDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if let indexPath = selectedIndexPath {
+
+        if let indexPath = initialIndexPath {
             detailCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         }
+        
+        // When viewDidAppear be called first time, the collection should scroll to the initial position,
+        // then the collection cell may be changed from initial position. In this case,
+        // we use 'isAppeard' to judge if needs update initial indexPath in the willDisplay method,
+        // becasue if pan gesture cancelled from other cell, viewDidAppear will be called again,
+        // and the collection should scroll to the other cell's position.
+        isAppeared = true
     }
     
     // MARK: Views
@@ -87,10 +101,9 @@ extension GalleryDetailViewController: GalleryDetailTransitionAnimatorDelegate {
     }
     
     func referenceImage() -> UIImage? {
-        guard let indexPath = detailCollection.indexPathsForVisibleItems.first else {
+        guard let indexPath = currentIndexPath else {
             return nil
         }
-        selectedIndexPath = indexPath
         return images[indexPath.row]
     }
     

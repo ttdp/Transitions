@@ -159,7 +159,7 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
         self.toVC = toVC
         fromVC.transitionController = self
         
-        toVC.lastSelectedIndexPath = fromVC.selectedIndexPath
+        toVC.selectedIndexPath = fromVC.currentIndexPath
         
         if toDelegate?.imageFrame() == nil {
             toVC.adjustCollectionViewOffset()
@@ -179,7 +179,7 @@ extension GalleryDetailInteractiveDismissTransition: UIViewControllerInteractive
         transitionImageView.frame = fromImageFrame
         
         self.backgroundAnimation = UIViewPropertyAnimator(duration: 1, dampingRatio: 1) {
-            fromView.alpha = 0
+            fromView.alpha = 0.5
         }
         
 //        if let tabBar = toVC.tabBarController as? TabBarController {

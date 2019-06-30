@@ -31,70 +31,74 @@ class GalleryDetailPopTransition: NSObject, UIViewControllerAnimatedTransitionin
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.38
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let toView = transitionContext.view(forKey: .to)
         let fromView = transitionContext.view(forKey: .from)
-        
-        let containerView = transitionContext.containerView
-        let fromReferenceFrame = galleryDetailVC.imageFrame()!
-        
-        let transitionImage = galleryDetailVC.referenceImage()
-        transitionImageView.image = transitionImage
-        transitionImageView.frame = fromReferenceFrame
-        
-        [toView, fromView].compactMap { $0 }.forEach {
-            containerView.addSubview($0)
-        }
-        containerView.addSubview(transitionImageView)
-        
+        let toView = transitionContext.view(forKey: .to)
         guard let galleryVC = toDelegate as? GalleryViewController else {
             return
         }
-        galleryVC.lastSelectedIndexPath = galleryDetailVC.selectedIndexPath
         
-        galleryDetailVC.transitionWillStart()
-        toDelegate.transitionWillStart()
+        let containerView = transitionContext.containerView
+        let transitionImage = galleryDetailVC.referenceImage()
+        guard let fromReferenceFrame = galleryDetailVC.imageFrame() else {
+            return
+        }
         
-        let duration = transitionDuration(using: transitionContext)
+        transitionImageView.image = transitionImage
+        transitionImageView.frame = fromReferenceFrame
+        
+        [toView, fromView, transitionImageView].compactMap { $0 }.forEach {
+            containerView.addSubview($0)
+        }
+        
+        // If pop back image is not the first displayed one,
+        // the galleryVC's collection cell maybe out off the screen.
+        galleryVC.selectedIndexPath = galleryDetailVC.currentIndexPath
+
+        if galleryVC.imageFrame() == nil {
+            galleryVC.adjustCollectionViewOffset()
+        }
+        
+        let duration = self.transitionDuration(using: transitionContext)
         let spring: CGFloat = 0.9
         let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: spring) {
             fromView?.alpha = 0
         }
         
+        animator.addAnimations {
+            let toReferenceFrame = self.toDelegate.imageFrame() ?? GalleryDetailPopTransition.defaultOffscreenFrameForDismissal(transitionImageSize: fromReferenceFrame.size, screenHeight: containerView.bounds.height)
+            self.transitionImageView.frame = toReferenceFrame
+        }
+        
         animator.addCompletion { position in
             self.transitionImageView.removeFromSuperview()
             self.transitionImageView.image = nil
-            
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            self.toDelegate.transitionDidEnd()
+            
             self.galleryDetailVC.transitionDidEnd()
+            self.toDelegate.transitionDidEnd()
         }
-        
+
+        // After 0.005 to let collection view do the layout adjustment.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
+            self.galleryDetailVC.transitionWillStart()
+            self.toDelegate.transitionWillStart()
+            
+            animator.startAnimation()
+        }
+
 //        if let tabBar = transitionContext.viewController(forKey: .to)?.tabBarController as? TabBarController {
 //            tabBar.setTabBar(hidden: false, animated: true, alongside: animator)
 //        }
-        
-        animator.startAnimation()
-        
-        // If pop back image is not the first displayed one, its galleryVC's collection cell maybe outoff the screen.
-        if toDelegate.imageFrame() == nil {
-            galleryVC.adjustCollectionViewOffset()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
-            animator.addAnimations {
-                let toReferenceFrame = self.toDelegate.imageFrame() ?? GalleryDetailPopTransition.defaultOffscreenFrameForDismissal(transitionImageSize: fromReferenceFrame.size, screenHeight: containerView.bounds.height)
-                self.transitionImageView.frame = toReferenceFrame
-            }
-        }
+
     }
     
-    // Note: Not used
+    // Note: Won't be called, because after adjust the collection offset,
+    // the imageFrame should be retrieved, no need for default offscreen.
     static func defaultOffscreenFrameForDismissal(transitionImageSize: CGSize, screenHeight: CGFloat) -> CGRect {
-        print(#function)
         return CGRect(x: 0, y: screenHeight, width: transitionImageSize.width, height: transitionImageSize.height)
     }
     
